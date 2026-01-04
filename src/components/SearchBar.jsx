@@ -1,16 +1,16 @@
-const SearchBar = ({ city, setCity, onSearch }) => {
+const SearchBar = ({ value, onChange, onSearch }) => {
   return (
-    <div className="flex gap-2 mt-4">
+    <div className="mb-6 text-center">
       <input
         type="text"
-        placeholder="Search city..."
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        className="flex-1 p-2 rounded-lg border"
+        placeholder="Search city"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="px-4 py-3 w-full md:w-1/2 rounded-full shadow border"
       />
       <button
         onClick={onSearch}
-        className="bg-orange-400 text-white px-4 rounded-lg"
+        className="mt-4 px-6 py-2 bg-white rounded-full shadow"
       >
         Search
       </button>
@@ -19,3 +19,4 @@ const SearchBar = ({ city, setCity, onSearch }) => {
 };
 
 export default SearchBar;
+
