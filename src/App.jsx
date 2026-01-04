@@ -1,20 +1,37 @@
+import { useState } from "react";
 import "./index.css";
 
 function App() {
-  const cities = [
+  const [search, setSearch] = useState("");
+  const [cities, setCities] = useState([
     { name: "Johannesburg", weather: "Cloudy ☁️" },
     { name: "Cape Town", weather: "Rain 🌧️" },
     { name: "Durban", weather: "Sunny ☀️" }
-  ];
+  ]);
+
+  const handleSearch = () => {
+    if (!search.trim()) return;
+
+    setCities([
+      ...cities,
+      { name: search, weather: "Unknown ❓" }
+    ]);
+
+    setSearch("");
+  };
 
   return (
     <div className="app">
       <h1 className="title">Weather Dashboard</h1>
 
       <div className="nav">
-        <button>Home</button>
-        <button>Contact</button>
-        <button>Search</button>
+        <input
+          type="text"
+          placeholder="Search city..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button onClick={handleSearch}>Search</button>
       </div>
 
       <div className="city-list">
