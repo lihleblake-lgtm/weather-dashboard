@@ -1,4 +1,55 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app {
+  background-color: peachpuff;
+  min-height: 100vh;
+  padding: 30px;
+  text-align: center;
+}
+
+.title {
+  color: white;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.nav button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.nav button:hover {
+  background-color: #f0f0f0;
+}
+
+.city-list {
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.city-card {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
