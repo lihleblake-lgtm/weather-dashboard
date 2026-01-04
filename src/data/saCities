@@ -2,27 +2,4 @@ export const saCities = [
     'Johannesburg',
     'Cape Town',
     'Durban',
-    'Pretoria',
-    'Port Elizabeth',
-    'Bloemfontein',
-    'East London',
-    'Pietermaritzburg',
-    'Nelspruit',
-    'Kimberley',
-    'Polokwane',
-    'Mthatha',
-    'Welkom',
-    'George',
-    'Richards Bay',
-    'Soweto',
-    'Vereeniging',
-    'Klerksdorp',
-    'Uitenhage',
-    'Middelburg',
-    'Witbank',
-    'Mbombela',
-    'Secunda',
 ]
-
-
-
