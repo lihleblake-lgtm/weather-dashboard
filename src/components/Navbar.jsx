@@ -1,11 +1,14 @@
-nav className="flex items-center justify-between p-4 bg-[#FFD6C9]">
-  <button>🏠</button>
+const Navbar = () => {
+  return (
+    <nav className="flex justify-between items-center p-4 bg-[#FFD6C9] shadow">
+      <h1 className="font-bold">Blake24</h1>
+      <div className="space-x-4">
+        <button>Home</button>
+        <button>Search</button>
+        <button>Contact</button>
+      </div>
+    </nav>
+  );
+};
 
-  <input
-    type="text"
-    placeholder="Search city"
-    className="px-3 py-1 rounded-lg w-1/2"
-  />
-
-  <button>☰</button>
-</nav>
+export default Navbar;
