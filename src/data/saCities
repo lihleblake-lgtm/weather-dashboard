@@ -1,8 +1,12 @@
-import const saCities = [
+export const saCities = [
     'Johannesburg',
     'Cape Town',
     'Durban',
     'Pretoria',
     'Port Elizabeth',
     'Bloemfontein',
+    'East London',
+    'Pietermaritzburg',
+    'Nelspruit',
+    'Kimberley',
 ]
