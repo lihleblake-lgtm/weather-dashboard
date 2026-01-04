@@ -1,54 +1,33 @@
-import { useEffect, useState } from "react";
-import Header from "./components/Header";
-import SearchBar from "./components/SearchBar";
-import WeatherCard from "./components/WeatherCard";
-import { saCities } from "./data/saCities";
-import { fetchWeather } from "./services/weatherApi";
+import "./index.css";
 
-
-const App = () => {
-  const [weatherData, setWeatherData] = useState([]);
-  const [search, setSearch] = useState("");
-
-  useEffect(() => {
-    saCities.forEach(loadCityWeather);
-  }, []);
-
-  const loadCityWeather = async (city) => {
-    try {
-      const data = await fetchWeather(city);
-      setWeatherData((prev) => [...prev, data]);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleSearch = () => {
-    if (search) {
-      loadCityWeather(search);
-      setSearch("");
-    }
-  };
+function App() {
+  const cities = [
+    { name: "Johannesburg", weather: "Cloudy ☁️" },
+    { name: "Cape Town", weather: "Rain 🌧️" },
+    { name: "Durban", weather: "Sunny ☀️" }
+  ];
 
   return (
-    <div className="min-h-screen bg-[#FFD9C9]">
-      <Header />
+    <div className="app">
+      <h1 className="title">Weather Dashboard</h1>
 
-      <main className="max-w-6xl mx-auto p-6">
-        <SearchBar
-          value={search}
-          onChange={setSearch}
-          onSearch={handleSearch}
-        />
+      <div className="nav">
+        <button>Home</button>
+        <button>Contact</button>
+        <button>Search</button>
+      </div>
 
-        <div className="grid grid-cols=1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8">
-          {weatherData.map((weather, index) => (
-            <WeatherCard key={index} weather={weather} />
-          ))}
-        </div>
-      </main>
+      <div className="city-list">
+        {cities.map((city, index) => (
+          <div key={index} className="city-card">
+            <span>{city.name}</span>
+            <span>{city.weather}</span>
+            <button>Details</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
-};
+}
 
 export default App;
