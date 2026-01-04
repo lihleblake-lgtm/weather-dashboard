@@ -4,7 +4,7 @@ import SearchBar from "./components/SearchBar";
 import WeatherCard from "./components/WeatherCard";
 import { saCities } from "./data/saCities";
 import { fetchWeather } from "./services/weatherApi";
-import "./App.css";
+
 
 const App = () => {
   const [weatherData, setWeatherData] = useState([]);
