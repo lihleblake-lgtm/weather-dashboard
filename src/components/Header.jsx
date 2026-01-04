@@ -1,14 +1,18 @@
-const Navbar = () => {
+const Header = () => {
   return (
-    <nav className="flex justify-between items-center p-4 bg-[#FFD6C9] shadow">
-      <h1 className="font-bold">Blake24</h1>
-      <div className="space-x-4">
-        <button>Home</button>
-        <button>Search</button>
-        <button>Contact</button>
+    <header className="flex justify-between items-center p-4">
+      <h1 className="text-2xl font-bold">Blake24 Weather</h1>
+
+      <div className="flex gap-3">
+        <button className="bg-white px-4 py-2 rounded-full shadow">
+          Home
+        </button>
+        <button className="bg-white px-4 py-2 rounded-full shadow">
+          Contact
+        </button>
       </div>
-    </nav>
+    </header>
   );
 };
 
-export default Navbar;
+export default Header;
