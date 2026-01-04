@@ -1,82 +1,53 @@
-import { useState } from "react";
-import Navbar from "./components/Navbar";
-import CityCard from "./components/CityCard";
-import WeatherDisplay from "./components/WeatherDisplay";
+import { useEffect, useState } from "react";
+import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
+import WeatherCard from "./components/WeatherCard";
 import { saCities } from "./data/saCities";
+import { fetchWeather } from "./services/weatherApi";
 
-const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+const App = () => {
+  const [weatherData, setWeatherData] = useState([]);
+  const [search, setSearch] = useState("");
 
-function App() {
-  const [city, setCity] = useState("");
-  const [weather, setWeather] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  useEffect(() => {
+    saCities.forEach(loadCityWeather);
+  }, []);
 
-  const fetchWeather = async (cityName) => {
+  const loadCityWeather = async (city) => {
     try {
-      setLoading(true);
-      setError("");
+      const data = await fetchWeather(city);
+      setWeatherData((prev) => [...prev, data]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-      const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${API_KEY}`
-      );
-
-      if (!res.ok) throw new Error("City not found");
-
-      const data = await res.json();
-      setWeather(data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
+  const handleSearch = () => {
+    if (search) {
+      loadCityWeather(search);
+      setSearch("");
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#FFF1E6]">
-      <Navbar />
+    <div className="min-h-screen bg-[#FFE5D0] text-gray-800">
+      <Header />
 
-      <main className="max-w-md mx-auto p-6">
-        <h1 className="text-2xl font-bold text-center">
-          Blake24 Weather
-        </h1>
-        <p className="text-center text-sm text-gray-600">
-          Daily Weather
-        </p>
-
+      <main className="p-4">
         <SearchBar
-          city={city}
-          setCity={setCity}
-          onSearch={() => fetchWeather(city)}
+          value={search}
+          onChange={setSearch}
+          onSearch={handleSearch}
         />
 
-        <div className="grid grid-cols-3 gap-4 mt-6">
-          {saCities.slice(0, 3).map((c) => (
-            <CityCard
-              key={c}
-              city={c}
-              onClick={() => fetchWeather(c)}
-            />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {weatherData.map((weather, index) => (
+            <WeatherCard key={index} weather={weather} />
           ))}
         </div>
-
-        <div className="bg-white mt-6 p-6 rounded-2xl shadow text-center">
-          <p className="font-medium">
-            Welcome to Blake24 Weather
-          </p>
-          <p className="text-sm mt-2">
-            We provide 99% accurate weather conditions across South Africa.
-          </p>
-        </div>
-
-        {loading && <p className="text-center mt-4">Loading...</p>}
-        {error && <p className="text-center mt-4 text-red-500">{error}</p>}
-
-        <WeatherDisplay weather={weather} />
       </main>
     </div>
   );
-}
+};
 
 export default App;
