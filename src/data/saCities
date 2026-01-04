@@ -1,0 +1,8 @@
+import const saCities = [
+    'Johannesburg',
+    'Cape Town',
+    'Durban',
+    'Pretoria',
+    'Port Elizabeth',
+    'Bloemfontein',
+]
